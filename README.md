@@ -1,3 +1,46 @@
+# Firebase Template
+## State Management
+- Normal React, no other state management
+
+## CSS Styling
+- Inline and css files
+
+## Setting Up Google Firebase                                   DONE
+- Go to Firebase Console
+- Add Project with a Name
+
+## Database : Firebase from Google (Including LocalStorage)     DONE
+- Once in Google Firebase, go to Project Overview
+- Click on the Code Icon
+- Copy that config data into base.js
+- Go to Database / Realtime Database
+- Start in Test Mode, then later, we'll do Locked Mode
+
+## Login : Firebase from Google                                 DONE
+- Instructions and Ideas go here
+- Will start with a basic Facebook, Twitter, Github, and Email Auth
+- https://courses.wesbos.com/account/access/5bf96967256ae9346111e169/view/257761785
+- Twitter: https://developer.twitter.com/en/apps/create
+- Github: https://github.com/settings/applications/new
+
+
+## Spinner Information
+- http://www.codetunnel.io/how-to-create-versatile-loading-spinner-management-in-react/
+
+## Build Steps for Netlify
+- npm run build
+- netlify deploy
+    - Use the build folder when it asks
+    - Check it over
+- If it's good, then run netlify deploy --prod
+- Update Google Firebase with the new URL (if needed)
+- Done! 
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
