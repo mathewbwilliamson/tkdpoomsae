@@ -10,16 +10,17 @@ class App extends Component {
     super(props)
     
     this.state = {
-      poomsae: {1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: 'Koryo', 10: 'Kuemgang', 11: 'Taebaek'},
-      defaultPoomsae: {1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: 'Koryo', 10: 'Kuemgang', 11: 'Taebaek'},
+      poomsae: [1, 2, 3, 4, 5, 6, 7, 8, 'Koryo', 'Keumgang', 'Taebaek'],
     }
 
     this.randomizePoomsae = this.randomizePoomsae.bind(this)
   }
 
   async setupDatabase() {
-    this.dataRef = await base.syncState(`poomsae`, {
+    // The default value basically is the default state. Ignore the state above because it will get replaced when it first runs.
+    return this.dataRef = await base.syncState(`poomsae`, {
         context: this,
+        defaultValue: [1, 2, 3, 4, 5, 6, 7, 8, 'Koryo', 'Keumgang', 'Taebaek'],
         state: 'poomsae'
     })
   }
@@ -30,12 +31,10 @@ class App extends Component {
     
     //Reinstate Local Storage    
     const localStorageRef = localStorage.getItem('poomsae')
-    console.log('[matt] localStorageRef', localStorageRef)
     
     if (localStorageRef) {
       this.setState({ poomsae: JSON.parse(localStorageRef)})
     }
-
   }
 
   componentDidUpdate() {
@@ -43,7 +42,6 @@ class App extends Component {
     // 1. In ComponentDidUpdate(), localStorage.setItem(key, value)
     // 2. In ComponentDidMount(), localStorageRef = localStorage.getItem(ID)
     // 3. If localStorageRef, setState(value) 
-    // Remember that if there's no update because state doesn't change, this won't appear
     localStorage.setItem('poomsae', JSON.stringify(this.state.poomsae))
   }
 
@@ -54,33 +52,19 @@ class App extends Component {
   randomizePoomsae() {
     // Common update the state pattern: Copy, Update, Set
     // 1. Take a copy of the current state
-    console.log('[matt] this.state.poomsae', this.state.poomsae)
-    let poomsae
-
-    if (this.state.poomsae) {
-      poomsae = {...this.state.defaultPoomsae}
-    } else {
-      poomsae = {...this.state.poomsae}
-    }
-    console.log('[matt] poomsae from button', poomsae)
-    
+    const randomizedPoomsae = this.state.poomsae
 
     // 2. Update that state
-    
+    randomizedPoomsae.sort(() => 0.5 - Math.random());    
 
-    // 3. Set that to state
-    this.setState({poomsae})
+    // 3. Set that to state    
+    this.setState({poomsae: randomizedPoomsae})
   }
   
-  render() {
-    if (!this.state.poomsae) {
-      console.log('[matt] TEST', )
-      
-    }
-    
+  render() {    
     return (
       <div className="main">
-      <LockedComponent />
+      {/* <LockedComponent /> */}
         <header className="App-header">
           <p>This is the header</p>
         </header>
