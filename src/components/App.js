@@ -3,9 +3,6 @@ import base, {firebaseApp} from '../base'
 import Login from './Login'
 import firebase from 'firebase'
 import LockedComponent from './LockedComponent'
-
-
-
 import './App.css'
 
 class App extends Component {
@@ -13,30 +10,31 @@ class App extends Component {
     super(props)
     
     this.state = {
-      data: {count: 0},
-      aString: 'this is a thingy',
+      poomsae: {1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: 'Koryo', 10: 'Kuemgang', 11: 'Taebaek'},
+      defaultPoomsae: {1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: 'Koryo', 10: 'Kuemgang', 11: 'Taebaek'},
     }
 
-    this.increaseCount = this.increaseCount.bind(this)
+    this.randomizePoomsae = this.randomizePoomsae.bind(this)
   }
 
   async setupDatabase() {
-    this.dataRef = await base.syncState(`data`, {
+    this.dataRef = await base.syncState(`poomsae`, {
         context: this,
-        state: 'data'
+        state: 'poomsae'
     })
-
   }
 
   componentDidMount() {
-    //Reinstate Local Storage
-    const localStorageRef = localStorage.getItem('data')
-    if (localStorageRef) {
-        this.setState({ data: JSON.parse(localStorageRef)})
-    }
-
     //Setup the database
     this.setupDatabase()
+    
+    //Reinstate Local Storage    
+    const localStorageRef = localStorage.getItem('poomsae')
+    console.log('[matt] localStorageRef', localStorageRef)
+    
+    if (localStorageRef) {
+      this.setState({ poomsae: JSON.parse(localStorageRef)})
+    }
 
   }
 
@@ -46,33 +44,39 @@ class App extends Component {
     // 2. In ComponentDidMount(), localStorageRef = localStorage.getItem(ID)
     // 3. If localStorageRef, setState(value) 
     // Remember that if there's no update because state doesn't change, this won't appear
-    localStorage.setItem('data', JSON.stringify(this.state.data))
+    localStorage.setItem('poomsae', JSON.stringify(this.state.poomsae))
   }
 
   componentWillUnmount() {
     base.removeBinding(this.dataRef)
   }
 
-  increaseCount() {
+  randomizePoomsae() {
     // Common update the state pattern: Copy, Update, Set
     // 1. Take a copy of the current state
-    const data = {...this.state.data}
+    console.log('[matt] this.state.poomsae', this.state.poomsae)
+    let poomsae
+
+    if (this.state.poomsae) {
+      poomsae = {...this.state.defaultPoomsae}
+    } else {
+      poomsae = {...this.state.poomsae}
+    }
+    console.log('[matt] poomsae from button', poomsae)
+    
 
     // 2. Update that state
-    data.count ?
-    (
-      data.count = data.count + 1
-    )
-    : 
-    (
-      data.count = 1
-    )
+    
 
     // 3. Set that to state
-    this.setState({data})
+    this.setState({poomsae})
   }
   
   render() {
+    if (!this.state.poomsae) {
+      console.log('[matt] TEST', )
+      
+    }
     
     return (
       <div className="main">
@@ -83,8 +87,8 @@ class App extends Component {
 
         <main>
           <p>This is the main page</p>
-          <p>state.thing: {this.state.data.count}</p>
-          <button onClick={this.increaseCount}>+ Count</button>
+          <p>state.thing: {this.state.poomsae[9]}</p>
+          <button onClick={this.randomizePoomsae}>Randomize Poomsae</button>
         </main>
       </div>
     );

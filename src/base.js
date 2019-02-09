@@ -3,12 +3,12 @@ import firebase from 'firebase'
 
 const firebaseApp = firebase.initializeApp({
     // See Readme for details
-    apiKey: "AIzaSyCGJDVbEGtFQ6wub9dtVdMVlaHR1rDuUag",
-    authDomain: "fir-template-mw.firebaseapp.com",
-    databaseURL: "https://fir-template-mw.firebaseio.com",
-    projectId: "fir-template-mw",
-    storageBucket: "fir-template-mw.appspot.com",
-    messagingSenderId: "314225114233"
+    apiKey: "AIzaSyAi0WxYfm9Xm3hortSToKGmP-hvDYYgIGg",
+    authDomain: "tkdpoomsae-cef41.firebaseapp.com",
+    databaseURL: "https://tkdpoomsae-cef41.firebaseio.com",
+    projectId: "tkdpoomsae-cef41",
+    storageBucket: "",
+    messagingSenderId: "32301455636"
   })
 
 const base = Rebase.createClass(firebaseApp.database())
