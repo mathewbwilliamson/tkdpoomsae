@@ -37,6 +37,10 @@
 - Done! 
 
 
+# TODO
+- Make CSS styling pretty, expecially for mobile
+- Create actual layout that I want: This week's poomsae starting with today's. Gray out previous days and start on Monday. Display them vertically, and jump to today's. If today.day === Tuesday, jump to Tuesday then gray out monday. 
+
 
 
 
