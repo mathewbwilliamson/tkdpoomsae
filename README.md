@@ -25,6 +25,7 @@
 
 ## PWA Creation
 - Edit Manifest.json
+- If you want it to run, change line 10 in index.js to register() not unregister().
 
 
 ## Spinner Information

@@ -8,4 +8,3 @@ import * as serviceWorker from './serviceWorker';
 render( <Router />, document.querySelector('#main'))
 
 serviceWorker.register();
-

@@ -1,0 +1,16 @@
+main, .day, .form, header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.videos {
+    display: flex;
+    justify-content: space-between;
+    width: 60vw;
+}
+
+header h2 {
+    text-align: center;
+}
+

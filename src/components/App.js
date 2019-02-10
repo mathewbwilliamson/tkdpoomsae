@@ -4,13 +4,25 @@ import Login from './Login'
 import firebase from 'firebase'
 import LockedComponent from './LockedComponent'
 import './App.css'
+import Checkbox from './Checkbox'
 
 class App extends Component {
   constructor(props) {
     super(props)
     
     this.state = {
-      poomsae: [1, 2, 3, 4, 5, 6, 7, 8, 'Koryo', 'Keumgang', 'Taebaek'],
+      poomsae: [
+        '1 - Taegeuk Il Jang', 
+        '2 - Taegeuk Ee Jang', 
+        '3 - Taegeuk Sam Jang', 
+        '4 - Taegeuk Sa Jang', 
+        '5 - Taegeuk Oh Jang', 
+        '6 - Taegeuk Yuk Jang', 
+        '7 - Taegeuk Chil Jang', 
+        '8 - Taegeuk Pal Jang', 
+        'Koryo', 
+        'Keumgang', 
+        'Taebaek'],
     }
 
     this.randomizePoomsae = this.randomizePoomsae.bind(this)
@@ -20,7 +32,18 @@ class App extends Component {
     // The default value basically is the default state. Ignore the state above because it will get replaced when it first runs.
     return this.dataRef = await base.syncState(`poomsae`, {
         context: this,
-        defaultValue: [1, 2, 3, 4, 5, 6, 7, 8, 'Koryo', 'Keumgang', 'Taebaek'],
+        defaultValue: [
+          '1 - Taegeuk Il Jang', 
+          '2 - Taegeuk Ee Jang', 
+          '3 - Taegeuk Sam Jang', 
+          '4 - Taegeuk Sa Jang', 
+          '5 - Taegeuk Oh Jang', 
+          '6 - Taegeuk Yuk Jang', 
+          '7 - Taegeuk Chil Jang', 
+          '8 - Taegeuk Pal Jang', 
+          'Koryo', 
+          'Keumgang', 
+          'Taebaek'],
         state: 'poomsae'
     })
   }
@@ -60,18 +83,44 @@ class App extends Component {
     // 3. Set that to state    
     this.setState({poomsae: randomizedPoomsae})
   }
+
   
   render() {    
+    const DaysOfTheWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    const poomsae = this.state.poomsae    
+
     return (
       <div className="main">
       {/* <LockedComponent /> */}
         <header className="App-header">
-          <p>This is the header</p>
+          <h2>TKD Poomsae Weekly Randomizer</h2>
         </header>
 
         <main>
-          <p>This is the main page</p>
-          <p>state.thing: {this.state.poomsae[9]}</p>
+          {poomsae && DaysOfTheWeek.map((day, index) => (
+              <div key={`${day}${index}`} className='day'>
+                <h2>{day}</h2>
+                <div className={day+index}>
+                  <h3><input type="checkbox" />{poomsae[index]}</h3>
+                  <div className='videos'>
+                    <p className='basicvid'>Basic Video</p>
+                    <p className='teachingvid'>Teaching Video</p>
+                  </div>
+                </div>
+                {poomsae[index + 7] &&
+                  <div className={day+index}>
+                    <h3><input type="checkbox" />{poomsae[index + 7]}</h3>
+                    <div className='videos'>
+                      <p className='basicvid'>Basic Video</p>
+                      <p className='teachingvid'>Teaching Video</p>
+                    </div>
+                  </div>
+                }
+              </div>
+              )
+            )
+          }
+          
           <button onClick={this.randomizePoomsae}>Randomize Poomsae</button>
         </main>
       </div>
