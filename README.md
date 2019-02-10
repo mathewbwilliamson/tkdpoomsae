@@ -23,6 +23,9 @@
 - Twitter: https://developer.twitter.com/en/apps/create
 - Github: https://github.com/settings/applications/new
 
+## PWA Creation
+- Edit Manifest.json
+
 
 ## Spinner Information
 - http://www.codetunnel.io/how-to-create-versatile-loading-spinner-management-in-react/
