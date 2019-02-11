@@ -23,6 +23,19 @@ class App extends Component {
         'Koryo', 
         'Keumgang', 
         'Taebaek'],
+      poomsae_basic_href: {
+        '1 - Taegeuk Il Jang': '',
+        '2 - Taegeuk Ee Jang': '', 
+        '3 - Taegeuk Sam Jang': '', 
+        '4 - Taegeuk Sa Jang': '', 
+        '5 - Taegeuk Oh Jang': '', 
+        '6 - Taegeuk Yuk Jang': '', 
+        '7 - Taegeuk Chil Jang': '', 
+        '8 - Taegeuk Pal Jang': '', 
+        'Koryo': 'https://www.youtube.com/watch?v=55WKzmYHN-0', 
+        'Keumgang': '', 
+        'Taebaek': 'https://www.youtube.com/watch?v=7CW5SLGdH2Y'
+      }
     }
 
     this.randomizePoomsae = this.randomizePoomsae.bind(this)
