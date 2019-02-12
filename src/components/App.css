@@ -4,6 +4,10 @@ main, .day, .form, header {
     align-items: center;
 }
 
+.day {
+    margin-bottom: 20px;
+}
+
 .videos {
     display: flex;
     justify-content: space-between;
@@ -12,4 +16,13 @@ main, .day, .form, header {
 
 header h2 {
     text-align: center;
+}
+
+.day h3 {
+    text-align: center;
+    margin-bottom: 1px;
+}
+
+.invisible {
+    color: rgb(165, 164, 164);
 }
