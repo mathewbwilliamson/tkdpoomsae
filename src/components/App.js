@@ -5,6 +5,7 @@ import firebase from 'firebase'
 import LockedComponent from './LockedComponent'
 import './App.css'
 import Checkbox from './Checkbox'
+import PoomsaeShuffled from './PoomsaeShuffled'
 
 class App extends Component {
   constructor(props) {
@@ -110,56 +111,64 @@ class App extends Component {
     this.setState({poomsae: randomizedPoomsae})
   }
 
-  
+  // Idea below would be to show Login screen OR PoomsaeShuffled based on if person is logged in or not
   render() {    
-    const DaysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    const poomsae = this.state.poomsae
-    let todaysDay = new Date(Date.now()).getDay()   
-
     return (
-      <div className="main">
-      {/* <LockedComponent /> */}
-        <header className="App-header">
-          <h2>TKD Poomsae Weekly Randomizer</h2>
-        </header>
+      <PoomsaeShuffled 
+        poomsae={this.state.poomsae}
+        poomsae_basic_href={this.state.poomsae_basic_href}
+        poomsae_teaching_href={this.state.poomsae_teaching_href} 
+        randomizePoomsae={this.randomizePoomsae} 
+      />
+    )
+    // const DaysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    // const poomsae = this.state.poomsae
+    // let todaysDay = new Date(Date.now()).getDay()   
 
-        <main>
-          {poomsae && DaysOfTheWeek.map((day, index) => {
-            let visibility = 'visible'
+    // return (
+    //   <div className="main">
+    //   {/* <LockedComponent /> */}
+    //     <header className="App-header">
+    //       <h2>TKD Poomsae Weekly Shuffler</h2>
+    //     </header>
 
-            if (index < todaysDay) {
-              visibility = 'invisible'
-            }
+    //     <main>
+    //       {poomsae && DaysOfTheWeek.map((day, index) => {
+    //         let visibility = 'visible'
 
-            return (
-              <div key={`${day}${index}`} className={`day ${visibility}`}>
-                <h2>{day}</h2>
-                <div className={day+index}>
-                  <h3><input type="checkbox" />{poomsae[index]}</h3>
-                  <div className='videos'>
-                    <p className='basicvid'><a href={this.state.poomsae_basic_href[poomsae[index]]}>Basic Video</a></p>
-                    <p className='teachingvid'><a href={this.state.poomsae_teaching_href[poomsae[index]]}>Teaching Video</a></p>
-                  </div>
-                </div>
-                {poomsae[index + 7] &&
-                  <div className={day+index}>
-                    <h3><input type="checkbox" />{poomsae[index + 7]}</h3>
-                    <div className='videos'>
-                      <p className='basicvid'><a href={this.state.poomsae_basic_href[poomsae[index + 7]]}>Basic Video</a></p>
-                      <p className='teachingvid'><a href={this.state.poomsae_teaching_href[poomsae[index + 7]]}>Teaching Video</a></p>
-                    </div>
-                  </div>
-                }
-              </div>
-              )
-              }
-            )
-          }
+    //         if (index < todaysDay) {
+    //           visibility = 'invisible'
+    //         }
+
+    //         return (
+    //           <div key={`${day}${index}`} className={`day ${visibility}`}>
+    //             <h2>{day}</h2>
+    //             <div className={day+index}>
+    //               <h3><input type="checkbox" />{poomsae[index]}</h3>
+    //               <div className='videos'>
+    //                 <p className='basicvid'><a href={this.state.poomsae_basic_href[poomsae[index]]}>Basic Video</a></p>
+    //                 <p className='teachingvid'><a href={this.state.poomsae_teaching_href[poomsae[index]]}>Teaching Video</a></p>
+    //               </div>
+    //             </div>
+    //             {poomsae[index + 7] &&
+    //               <div className={day+index}>
+    //                 <h3><input type="checkbox" />{poomsae[index + 7]}</h3>
+    //                 <div className='videos'>
+    //                   <p className='basicvid'><a href={this.state.poomsae_basic_href[poomsae[index + 7]]}>Basic Video</a></p>
+    //                   <p className='teachingvid'><a href={this.state.poomsae_teaching_href[poomsae[index + 7]]}>Teaching Video</a></p>
+    //                 </div>
+    //               </div>
+    //             }
+    //           </div>
+    //           )
+    //           }
+    //         )
+    //       }
           
-          <button onClick={this.randomizePoomsae}>Randomize Poomsae</button>
-        </main>
-      </div>
-    );
+    //       <button onClick={this.randomizePoomsae}>Randomize Poomsae</button>
+    //     </main>
+    //   </div>
+    // );
   }
 }
 
