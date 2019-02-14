@@ -26,3 +26,11 @@ header h2 {
 .invisible {
     color: rgb(165, 164, 164);
 }
+
+.active_button {
+    background-color: white;
+}
+
+.inactive_button {
+    background-color: blue;
+}

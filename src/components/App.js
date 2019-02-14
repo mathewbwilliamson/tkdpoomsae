@@ -24,35 +24,68 @@ class App extends Component {
         'Koryo', 
         'Keumgang', 
         'Taebaek'],
-      poomsae_basic_href: {
-        '1 - Taegeuk Il Jang': 'https://youtu.be/FD1yQP_o5Bs',
-        '2 - Taegeuk Ee Jang': 'https://youtu.be/lsmS_Nny0ZI', 
-        '3 - Taegeuk Sam Jang': 'https://youtu.be/hEFvnmPGi0Y', 
-        '4 - Taegeuk Sa Jang': 'https://youtu.be/7vWzIIC3SG8', 
-        '5 - Taegeuk Oh Jang': 'https://youtu.be/AOO8IKExvjI?t=04', 
-        '6 - Taegeuk Yuk Jang': 'https://youtu.be/t0V2dtbuvpA', 
-        '7 - Taegeuk Chil Jang': 'https://youtu.be/ijr0Vn6yWws', 
-        '8 - Taegeuk Pal Jang': 'https://youtu.be/TGbIcl2aiDw', 
-        'Koryo': 'https://youtu.be/55WKzmYHN-0?t=09', 
-        'Keumgang': 'https://youtu.be/5AqficgjJyI?t=11', 
-        'Taebaek': 'https://www.youtube.com/watch?v=7CW5SLGdH2Y'
+      poomsae_data: {
+        '1 - Taegeuk Il Jang': 
+        {
+          basicVideo: 'https://youtu.be/FD1yQP_o5Bs',
+          teachingVideo: '',
+          active: 'active_button'
+        },
+        '2 - Taegeuk Ee Jang': {
+          basicVideo: 'https://youtu.be/lsmS_Nny0ZI',
+          teachingVideo: '',
+          active: 'active_button'
+        }, 
+        '3 - Taegeuk Sam Jang': {
+          basicVideo: 'https://youtu.be/hEFvnmPGi0Y',
+          teachingVideo: '',
+          active: 'active_button'
+        }, 
+        '4 - Taegeuk Sa Jang': {
+          basicVideo: 'https://youtu.be/7vWzIIC3SG8',
+          teachingVideo: '',
+          active: 'active_button'
+        }, 
+        '5 - Taegeuk Oh Jang': {
+          basicVideo: 'https://youtu.be/AOO8IKExvjI?t=04',
+          teachingVideo: '',
+          active: 'active_button'
+        }, 
+        '6 - Taegeuk Yuk Jang': {
+          basicVideo: 'https://youtu.be/t0V2dtbuvpA',
+          teachingVideo: '',
+          active: 'active_button'
+        }, 
+        '7 - Taegeuk Chil Jang': {
+          basicVideo: 'https://youtu.be/ijr0Vn6yWws',
+          teachingVideo: '',
+          active: 'active_button'
+        }, 
+        '8 - Taegeuk Pal Jang': {
+          basicVideo: 'https://youtu.be/TGbIcl2aiDw',
+          teachingVideo: '',
+          active: 'active_button'
+        }, 
+        'Koryo': {
+          basicVideo: 'https://youtu.be/55WKzmYHN-0?t=09',
+          teachingVideo: '',
+          active: 'active_button'
+        }, 
+        'Keumgang': {
+          basicVideo: 'https://youtu.be/5AqficgjJyI?t=11',
+          teachingVideo: '',
+          active: 'active_button'
+        }, 
+        'Taebaek': {
+          basicVideo: 'https://www.youtube.com/watch?v=7CW5SLGdH2Y',
+          teachingVideo: '',
+          active: 'active_button'
+        }
       },
-      poomsae_teaching_href: {
-        '1 - Taegeuk Il Jang': '',
-        '2 - Taegeuk Ee Jang': '', 
-        '3 - Taegeuk Sam Jang': '', 
-        '4 - Taegeuk Sa Jang': '', 
-        '5 - Taegeuk Oh Jang': '', 
-        '6 - Taegeuk Yuk Jang': '', 
-        '7 - Taegeuk Chil Jang': '', 
-        '8 - Taegeuk Pal Jang': '', 
-        'Koryo': '', 
-        'Keumgang': '', 
-        'Taebaek': ''
-      }
     }
 
     this.randomizePoomsae = this.randomizePoomsae.bind(this)
+    this.togglePoomsaeActivation = this.togglePoomsaeActivation.bind(this)
   }
 
   async setupDatabase() {
@@ -111,64 +144,30 @@ class App extends Component {
     this.setState({poomsae: randomizedPoomsae})
   }
 
+  togglePoomsaeActivation(poomsae) {
+    const tempState = this.state.poomsae_data
+    let activeState = tempState[poomsae].active
+    let newState
+
+    if (activeState === 'active_button') {
+      tempState[poomsae].active = 'inactive_button'
+    } else {
+      tempState[poomsae].active = 'active_button'
+    }
+
+    this.setState({poomsae_data: tempState})
+  }
+
   // Idea below would be to show Login screen OR PoomsaeShuffled based on if person is logged in or not
   render() {    
     return (
       <PoomsaeShuffled 
         poomsae={this.state.poomsae}
-        poomsae_basic_href={this.state.poomsae_basic_href}
-        poomsae_teaching_href={this.state.poomsae_teaching_href} 
+        poomsae_data={this.state.poomsae_data}
         randomizePoomsae={this.randomizePoomsae} 
+        togglePoomsaeActivation={this.togglePoomsaeActivation}
       />
     )
-    // const DaysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    // const poomsae = this.state.poomsae
-    // let todaysDay = new Date(Date.now()).getDay()   
-
-    // return (
-    //   <div className="main">
-    //   {/* <LockedComponent /> */}
-    //     <header className="App-header">
-    //       <h2>TKD Poomsae Weekly Shuffler</h2>
-    //     </header>
-
-    //     <main>
-    //       {poomsae && DaysOfTheWeek.map((day, index) => {
-    //         let visibility = 'visible'
-
-    //         if (index < todaysDay) {
-    //           visibility = 'invisible'
-    //         }
-
-    //         return (
-    //           <div key={`${day}${index}`} className={`day ${visibility}`}>
-    //             <h2>{day}</h2>
-    //             <div className={day+index}>
-    //               <h3><input type="checkbox" />{poomsae[index]}</h3>
-    //               <div className='videos'>
-    //                 <p className='basicvid'><a href={this.state.poomsae_basic_href[poomsae[index]]}>Basic Video</a></p>
-    //                 <p className='teachingvid'><a href={this.state.poomsae_teaching_href[poomsae[index]]}>Teaching Video</a></p>
-    //               </div>
-    //             </div>
-    //             {poomsae[index + 7] &&
-    //               <div className={day+index}>
-    //                 <h3><input type="checkbox" />{poomsae[index + 7]}</h3>
-    //                 <div className='videos'>
-    //                   <p className='basicvid'><a href={this.state.poomsae_basic_href[poomsae[index + 7]]}>Basic Video</a></p>
-    //                   <p className='teachingvid'><a href={this.state.poomsae_teaching_href[poomsae[index + 7]]}>Teaching Video</a></p>
-    //                 </div>
-    //               </div>
-    //             }
-    //           </div>
-    //           )
-    //           }
-    //         )
-    //       }
-          
-    //       <button onClick={this.randomizePoomsae}>Randomize Poomsae</button>
-    //     </main>
-    //   </div>
-    // );
   }
 }
 
