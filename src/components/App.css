@@ -5,6 +5,9 @@ main, .day, .form, header {
 }
 
 .day {
+    text-align: center;
+    margin-bottom: 1px;
+    justify-content: space-evenly;
     margin-bottom: 20px;
 }
 
@@ -18,19 +21,43 @@ header h2 {
     text-align: center;
 }
 
-.day h3 {
-    text-align: center;
-    margin-bottom: 1px;
+h2 {
+    margin-bottom: 0;
+    font-size: 2.3rem;
+}
+
+h3 {
+    margin-bottom: 10px;
+    font-size: 1.7rem;
 }
 
 .invisible {
     color: rgb(165, 164, 164);
 }
 
+button {
+    width: 115px;
+    height: 36px;
+    font-size: .875rem;
+    line-height: 2.25rem;
+    font-weight: 500;
+    letter-spacing: .0892857143em;
+    text-decoration: none;
+    text-transform: uppercase;
+    min-width: 64px;
+    border: none;
+    outline: none;
+    line-height: inherit;
+    user-select: none;
+    overflow: hidden;
+    vertical-align: middle;
+    border-radius: 4px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
 .active_button {
     background-color: white;
 }
 
 .inactive_button {
-    background-color: blue;
+    background-color: rgb(166, 109, 247);
 }

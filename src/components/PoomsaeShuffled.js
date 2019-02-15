@@ -25,7 +25,8 @@ const PoomsaeShuffled = ({poomsae, poomsae_data, randomizePoomsae, togglePoomsae
                 <div key={`${day}${index}`} className={`day ${visibility}`}>
                     <h2>{day}</h2>
                     <div className={day+index}>
-                    <h3><button onClick={() => togglePoomsaeActivation(poomsae[index])} className={poomsae_data[poomsae[index]].active}>Practiced?</button>{poomsae[index]}</h3>
+                    <h3>{poomsae[index]}</h3>
+                    <button onClick={() => togglePoomsaeActivation(poomsae[index])} className={poomsae_data[poomsae[index]].active}>PRACTICED?</button>
                     <div className='videos'>
                         <p className='basicvid'><a href={poomsae_data[poomsae[index]].basicVideo}>Basic Video</a></p>
                         <p className='teachingvid'><a href={poomsae_data[poomsae[index]].teachingVideo}>Teaching Video</a></p>
@@ -33,7 +34,8 @@ const PoomsaeShuffled = ({poomsae, poomsae_data, randomizePoomsae, togglePoomsae
                     </div>
                     {poomsae[index + 7] &&
                     <div className={day+index}>
-                        <h3><button onClick={() => togglePoomsaeActivation(poomsae[index + 7])} className={poomsae_data[poomsae[index + 7]].active}>Practiced?</button>{poomsae[index + 7]}</h3>
+                        <h3>{poomsae[index + 7]}</h3>
+                        <button onClick={() => togglePoomsaeActivation(poomsae[index + 7])} className={poomsae_data[poomsae[index + 7]].active}>PRACTICED?</button>
                         <div className='videos'>
                         <p className='basicvid'><a href={poomsae_data[poomsae[index + 7]].basicVideo}>Basic Video</a></p>
                         <p className='teachingvid'><a href={poomsae_data[poomsae[index + 7]].teachingVideo}>Teaching Video</a></p>
